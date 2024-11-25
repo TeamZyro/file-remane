@@ -6,7 +6,7 @@ from datetime import datetime
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from helper.utils import progress_for_pyrogram, humanbytes, convert
-from helper.database import AshutoshGoswami24
+from helper.database import PiratesBotRepo
 from config import Config
 import os
 import time
@@ -137,7 +137,7 @@ def extract_episode_number(filename):
 
 
 # Example Usage:
-filename = "Naruto Shippuden S01[episode] [quality][Dual Audio] @AshutoshGoswami24.mkv"
+filename = "Naruto Shippuden S01[episode] [quality][Dual Audio] @PiratesBotRepo.mkv"
 episode_number = extract_episode_number(filename)
 print(f"Extracted Episode Number: {episode_number}")
 
@@ -145,8 +145,8 @@ print(f"Extracted Episode Number: {episode_number}")
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
 async def auto_rename_files(client, message):
     user_id = message.from_user.id
-    format_template = await AshutoshGoswami24.get_format_template(user_id)
-    media_preference = await AshutoshGoswami24.get_media_preference(user_id)
+    format_template = await PiratesBotRepo.get_format_template(user_id)
+    media_preference = await PiratesBotRepo.get_media_preference(user_id)
 
     if not format_template:
         return await message.reply_text(
@@ -213,9 +213,9 @@ async def auto_rename_files(client, message):
 
         # Add metadata if needed
         metadata_added = False
-        _bool_metadata = await AshutoshGoswami24.get_metadata(user_id)
+        _bool_metadata = await PiratesBotRepo.get_metadata(user_id)
         if _bool_metadata:
-            metadata = await AshutoshGoswami24.get_metadata_code(user_id)
+            metadata = await PiratesBotRepo.get_metadata_code(user_id)
             if metadata:
                 cmd = f'ffmpeg -i "{renamed_file_path}"  -map 0 -c:s copy -c:a copy -c:v copy -metadata title="{metadata}" -metadata author="{metadata}" -metadata:s:s title="{metadata}" -metadata:s:a title="{metadata}" -metadata:s:v title="{metadata}"  "{metadata_file_path}"'
                 try:
@@ -251,8 +251,8 @@ async def auto_rename_files(client, message):
         upload_msg = await download_msg.edit("Uploading the file...")
 
         ph_path = None
-        c_caption = await AshutoshGoswami24.get_caption(message.chat.id)
-        c_thumb = await AshutoshGoswami24.get_thumbnail(message.chat.id)
+        c_caption = await PiratesBotRepo.get_caption(message.chat.id)
+        c_thumb = await PiratesBotRepo.get_thumbnail(message.chat.id)
 
         caption = (
             c_caption.format(

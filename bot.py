@@ -19,7 +19,7 @@ logging.getLogger("pyrogram").setLevel(logging.ERROR)
 class Bot(Client):
     def __init__(self):
         super().__init__(
-            name="AshutoshGoswami24",
+            name="PiratesBotRepo",
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,

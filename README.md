@@ -22,7 +22,7 @@
 
 ## Deploy to Heroku
 
-<a href="https://heroku.com/deploy?template=https://github.com/AshutoshGoswami24/Auto-Rename-Bot">
+<a href="https://heroku.com/deploy?template=https://github.com/Gokukhan1/file-remane">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" style="width:170px;">
 </a>
 

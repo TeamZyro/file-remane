@@ -9,19 +9,19 @@ from pyrogram.types import (
     InputMediaPhoto,
 )
 
-from helper.database import AshutoshGoswami24
+from helper.database import PiratesBotRepo
 from config import Config, Txt
 
 
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
     user = message.from_user
-    await AshutoshGoswami24.add_user(client, message)
+    await PiratesBotRepo.add_user(client, message)
     button = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("📢 Updates", url="https://t.me/AshutoshGoswami24"),
-                InlineKeyboardButton("💬 Support", url="https://t.me/AshuSupport"),
+                InlineKeyboardButton("📢 Updates", url="https://t.me/PiratesBotRepo"),
+                InlineKeyboardButton("💬 Support", url="https://t.me/PiratesMainchat"),
             ],
             [
                 InlineKeyboardButton("⚙️ Help", callback_data="help"),
@@ -29,7 +29,7 @@ async def start(client, message):
             ],
             [
                 InlineKeyboardButton(
-                    "🧑‍💻 Developer 🧑‍💻", url="https://t.me/AshutoshGoswami24"
+                    "🧑‍💻 Developer 🧑‍💻", url="https://t.me/xeno_kakarot"
                 )
             ],
         ]
@@ -60,9 +60,9 @@ async def cb_handler(client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("📢 Updates", url="https://t.me/AshutoshGoswami24"),
+                        InlineKeyboardButton("📢 Updates", url="https://t.me/PiratesBotRepo"),
                         InlineKeyboardButton(
-                            "💬 Support", url="https://t.me/AshuSupport"
+                            "💬 Support", url="https://t.me/PiratesMainchat"
                         ),
                     ],
                     [
@@ -71,7 +71,7 @@ async def cb_handler(client, query: CallbackQuery):
                     ],
                     [
                         InlineKeyboardButton(
-                            "🧑‍💻 Developer 🧑‍💻", url="https://t.me/AshutoshGoswami24"
+                            "🧑‍💻 Developer 🧑‍💻", url="https://t.me/xeno_kakarot"
                         )
                     ],
                 ]
@@ -127,7 +127,7 @@ async def cb_handler(client, query: CallbackQuery):
         )
 
     elif data == "file_names":
-        format_template = await AshutoshGoswami24.get_format_template(user_id)
+        format_template = await PiratesBotRepo.get_format_template(user_id)
         await query.message.edit_text(
             text=Txt.FILE_NAME_TXT.format(format_template=format_template),
             disable_web_page_preview=True,

@@ -5,7 +5,7 @@ from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
 )
-from helper.database import AshutoshGoswami24
+from helper.database import PiratesBotRepo
 from pyromod.exceptions import ListenerTimeout
 from config import Txt, Config
 
@@ -26,8 +26,8 @@ OFF = [
 async def handle_metadata(bot: Client, message: Message):
 
     ms = await message.reply_text("**Please Wait...**", reply_to_message_id=message.id)
-    bool_metadata = await AshutoshGoswami24.get_metadata(message.from_user.id)
-    user_metadata = await AshutoshGoswami24.get_metadata_code(message.from_user.id)
+    bool_metadata = await PiratesBotRepo.get_metadata(message.from_user.id)
+    user_metadata = await PiratesBotRepo.get_metadata_code(message.from_user.id)
     await ms.delete()
     if bool_metadata:
 
@@ -49,17 +49,17 @@ async def query_metadata(bot: Client, query: CallbackQuery):
 
     if data.startswith("metadata_"):
         _bool = data.split("_")[1]
-        user_metadata = await AshutoshGoswami24.get_metadata_code(query.from_user.id)
+        user_metadata = await PiratesBotRepo.get_metadata_code(query.from_user.id)
 
         if bool(eval(_bool)):
-            await AshutoshGoswami24.set_metadata(query.from_user.id, bool_meta=False)
+            await PiratesBotRepo.set_metadata(query.from_user.id, bool_meta=False)
             await query.message.edit(
                 f"<b>Your Current Metadata:</b>\n\n➜ `{user_metadata}` ",
                 reply_markup=InlineKeyboardMarkup(OFF),
             )
 
         else:
-            await AshutoshGoswami24.set_metadata(query.from_user.id, bool_meta=True)
+            await PiratesBotRepo.set_metadata(query.from_user.id, bool_meta=True)
             await query.message.edit(
                 f"<b>Your Current Metadata:</b>\n\n➜ `{user_metadata}` ",
                 reply_markup=InlineKeyboardMarkup(ON),
@@ -86,7 +86,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
             ms = await query.message.reply_text(
                 "**Please Wait...**", reply_to_message_id=metadata.id
             )
-            await AshutoshGoswami24.set_metadata_code(
+            await PiratesBotRepo.set_metadata_code(
                 query.from_user.id, metadata_code=metadata.text
             )
             await ms.edit("**Your Metadta Code Set Successfully ✅**")

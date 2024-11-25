@@ -1,17 +1,17 @@
 {
     "name": "Auto Renamer Bot",
     "description": "Telegram Auto File Renamer Bot ",
-    "logo": "https://graph.org/file/b3125068739885e7109db.jpg",
+    "logo": "https://envs.sh/St6.jpg",
     "keywords": ["Auto Renamer Bot", "Mongo DB"],    
-    "repository": "https://github.com/AshutoshGoswami24/Auto-Rename-Bot",
+    "repository": "https://github.com/Gokukhan1/file-remane",
     "env": {
         "API_ID": {
             "description": "Your APP ID From my.telegram.org ",
-            "value": ""
+            "value": "22731333"
         },
         "API_HASH": {
             "description": "Your API Hash From my.telegram.org ",
-            "value": ""
+            "value": "f8f993acb1d5f51c950ba873404d9af5"
         },
         "WEBHOOK": {
             "description": "if your server is need web service! value = True else value = False",
@@ -19,7 +19,7 @@
         },
         "FORCE_SUB_CHANNELS": {
             "description": "Your force sub channel user name without [@] ",
-            "value": "",
+            "value": "PiratesBotRepo",
             "required": false 
         },
         "BOT_TOKEN": {
@@ -35,16 +35,16 @@
         },
         "DB_URL": {
             "description": "Your Mongo DB URL Obtained From mongodb.com",
-            "value": ""
+            "value": "mongodb+srv://I-LOVE-PDF-BOT:I-LOVE-PDF-BOT@cluster0.c51o3a9.mongodb.net/?retryWrites=true&w=majority"
         },
         "DB_NAME":{ 
             "description":"Your Mongo DB Database Name ",
-            "value": "",
+            "value": "I-LOVE-PDF-BOT",
             "required": false
         },
         "START_PIC": {
             "description": "Your Bot start cmd Pic from @MT_TelegraPH_Bot",
-            "value": "",
+            "value": "https://envs.sh/St6.jpg",
             "required": false
         }
     },

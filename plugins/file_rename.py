@@ -137,7 +137,7 @@ def extract_episode_number(filename):
 
 
 # Example Usage:
-filename = "Naruto Shippuden S01[episode] [quality][Dual Audio] @PiratesBotRepo.mkv"
+filename = "Naruto Shippuden S01[episode] [quality][Dual Audio] @ZyropiratesMainchat.mkv"
 episode_number = extract_episode_number(filename)
 print(f"Extracted Episode Number: {episode_number}")
 

@@ -3,21 +3,21 @@ id_pattern = re.compile(r'^.\d+$')
 
 class Config(object):
     # pyro client config
-    API_ID    = os.environ.get("API_ID", "")
-    API_HASH  = os.environ.get("API_HASH", "")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
+    API_ID    = os.environ.get("API_ID", "23255238")
+    API_HASH  = os.environ.get("API_HASH", "009e3d8c1bdc89d5387cdd8fd182ec15")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7510779300:AAFYBbtnTmpJTF4toCcJjdcxUWXkg5OpnSA") 
 
     # database config
-    DB_NAME = os.environ.get("DB_NAME","PiratesBotRepo")     
-    DB_URL  = os.environ.get("DB_URL","")
+    DB_NAME = os.environ.get("DB_NAME","ZyropiratesMainchat")     
+    DB_URL  = os.environ.get("DB_URL","mongodb+srv://nibbanmisal3302:Gokukhan3303@cluster0.0u22b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
  
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "")
     ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
     # -- FORCE_SUB_CHANNELS = ["BotzPW","AshuSupport","AshutoshGoswami24"] -- # 
-    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', 'PiratesBotRepo,Hindi_new_Animes').split(',')
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
+    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', 'ZyropiratesMainchat').split(',')
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002051009747"))
     PORT = int(os.environ.get("PORT", ""))
     
     # wes response configuration     
@@ -57,9 +57,9 @@ Use These Keywords To Setup Custom File Name
 <b>📝 Language :</b> <a href='https://python.org'>Python 3</a>
 <b>📚 Library :</b> <a href='https://pyrogram.org'>Pyrogram 2.0</a>
 <b>🚀 Server :</b> <a href='https://heroku.com'>Heroku</a>
-<b>🧑‍💻 Developer :</b> <a href='https://t.me/PiratesBotRepo'>PandaWep</a>
+<b>🧑‍💻 Developer :</b> <a href='https://t.me/Gaming_World_Update'>PandaWep</a>
     
-<b>♻️ Bot Made By :</b> @PiratesBotRepo"""
+<b>♻️ Bot Made By :</b> @ZyropiratesMainchat"""
 
     
     THUMBNAIL_TXT = """<b><u>🖼️  HOW TO SET THUMBNAIL</u></b>
@@ -81,7 +81,7 @@ Use These Keywords To Setup Custom File Name
 ┣⪼ ⏳️ Dᴏɴᴇ : {0}%
 ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
 ┣⪼ ⏰️ Eᴛᴀ: {4}
-┣⪼ 🥺 joine Plz: @PiratesBotRepo
+┣⪼ 🥺 joine Plz: @ZyropiratesMainchat
 ╰━━━━━━━━━━━━━━━➣ </b>"""
     
     
@@ -93,7 +93,7 @@ If You Like My Bots & Projects, You Can 🎁 Donate Me Any Amount From 10 Rs Upt
     
     HELP_TXT = """<b>Hey</b> {}
     
-Joine @PiratesBotRepo To Help """
+Joine @ZyropiratesMainchat To Help """
 
 
 

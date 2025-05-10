@@ -63,7 +63,7 @@ class Bot(Client):
                 date = curr.strftime("%d %B, %Y")
                 time = curr.strftime("%I:%M:%S %p")
                 await self.send_message(
-                    Config.LOG_CHANNEL,
+                    "mitsuri_log",
                     f"**__{me.mention} is restarted !!__**\n\n"
                     f"📅 Date : `{date}`\n"
                     f"⏰ Time : `{time}`\n"

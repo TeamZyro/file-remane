@@ -70,7 +70,7 @@ bot_instance = Bot()
 
 def main():
     async def start_services():
-        if Config.STRING_SESSION:
+        if Config.API_ID:
             await asyncio.gather(
                 app.start(),  # Start the Pyrogram Client
                 bot_instance.start(),  # Start the bot instance

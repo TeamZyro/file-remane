@@ -1,21 +1,30 @@
 import logging
-import logging.config
 import warnings
-from pyrogram import Client, idle
+import asyncio
+from datetime import datetime
+
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
-from config import Config
 from aiohttp import web
 from pytz import timezone
-from datetime import datetime
-import asyncio
+
+from config import Config
 import pyromod
 
-import logging
 
-logging.basicConfig(level=logging.INFO)
+# Setup logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
-logger.info("Bot started.")
+
+
+# Dummy web server function (you can modify this)
+async def web_server():
+    async def handle(request):
+        return web.Response(text="Bot is running!")
+    app = web.Application()
+    app.router.add_get("/", handle)
+    return app
+
 
 class Bot(Client):
     def __init__(self):
@@ -34,19 +43,19 @@ class Bot(Client):
         me = await self.get_me()
         self.mention = me.mention
         self.username = me.username
-        app = web.AppRunner(await web_server())
-        await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, Config.PORT).start()
-        logging.info(f"{me.first_name} ✅✅ BOT started successfully ✅✅")
 
-        for id in Config.ADMIN:
+        runner = web.AppRunner(await web_server())
+        await runner.setup()
+        site = web.TCPSite(runner, "0.0.0.0", Config.PORT)
+        await site.start()
+
+        logger.info(f"{me.first_name} ✅ Bot started successfully")
+
+        for admin_id in Config.ADMIN:
             try:
-                await self.send_message(
-                    id, f"**__{me.first_name}  Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️__**"
-                )
-            except:
-                pass
+                await self.send_message(admin_id, f"**__{me.first_name} is started.....✨️__**")
+            except Exception as e:
+                logger.warning(f"Failed to send start message to admin {admin_id}: {e}")
 
         if Config.LOG_CHANNEL:
             try:
@@ -55,34 +64,22 @@ class Bot(Client):
                 time = curr.strftime("%I:%M:%S %p")
                 await self.send_message(
                     Config.LOG_CHANNEL,
-                    f"**__{me.mention} Iꜱ Rᴇsᴛᴀʀᴛᴇᴅ !!**\n\n📅 Dᴀᴛᴇ : `{date}`\n⏰ Tɪᴍᴇ : `{time}`\n🌐 Tɪᴍᴇᴢᴏɴᴇ : `Asia/Kolkata`\n\🤖 Vᴇʀsɪᴏɴ : `v{__version__} (Layer {layer})`</b>",
+                    f"**__{me.mention} is restarted !!__**\n\n"
+                    f"📅 Date : `{date}`\n"
+                    f"⏰ Time : `{time}`\n"
+                    f"🌐 Timezone : `Asia/Kolkata`\n"
+                    f"🤖 Version : `v{__version__} (Layer {layer})`"
                 )
-            except:
-                print("Pʟᴇᴀꜱᴇ Mᴀᴋᴇ Tʜɪꜱ Iꜱ Aᴅᴍɪɴ Iɴ Yᴏᴜʀ Lᴏɢ Cʜᴀɴɴᴇʟ")
+            except Exception:
+                logger.warning("⚠️ Please make sure the bot is admin in your log channel!")
 
     async def stop(self, *args):
         await super().stop()
-        logging.info("Bot Stopped 🙄")
+        logger.info("Bot stopped gracefully.")
 
 
-bot_instance = Bot()
-
-
-def main():
-    async def start_services():
-        if Config.API_ID:
-            await asyncio.gather(
-                app.start(),  # Start the Pyrogram Client
-                bot_instance.start(),  # Start the bot instance
-            )
-        else:
-            await asyncio.gather(bot_instance.start())
-
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(start_services())
-    loop.run_forever()
-
-
+# Start the bot
 if __name__ == "__main__":
     warnings.filterwarnings("ignore", message="There is no current event loop")
-    main()
+    bot = Bot()
+    asyncio.run(bot.start())

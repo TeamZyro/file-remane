@@ -11,10 +11,11 @@ from datetime import datetime
 import asyncio
 import pyromod
 
-logging.config.fileConfig("logging.conf")
-logging.getLogger().setLevel(logging.INFO)
-logging.getLogger("pyrogram").setLevel(logging.ERROR)
+import logging
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+logger.info("Bot started.")
 
 class Bot(Client):
     def __init__(self):
